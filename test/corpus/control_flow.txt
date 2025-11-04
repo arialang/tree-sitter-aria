@@ -6,14 +6,14 @@ func prettyprint() {
     match this {
         case Fahrenheit(f) => {
             return "{0} F".format(f);
-        }, case Celsius(c) => {
+        }, 
+        case Celsius(c) => {
             return "{0} C".format(c);
         }
     }
 }
 
 ---
-
 
 
 ========
@@ -68,7 +68,48 @@ func prettyprint(a) {
 
 ---
 
-
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)))
+    (logic_block
+      (control_flow_statement
+        (for_statement
+          (identifier)
+          (expression
+            (array))
+          (logic_block
+            (expression_statement
+              (expression
+                (function_call
+                  (identifier)
+                  (argument_list
+                    (expression
+                      (identifier)))))))))
+      (control_flow_statement
+        (for_statement
+          (identifier)
+          (expression
+            (array))
+          (logic_block
+            (expression_statement
+              (expression
+                (function_call
+                  (identifier)
+                  (argument_list
+                    (expression
+                      (identifier)))))))
+          (else_clause
+            (logic_block
+              (expression_statement
+                (expression
+                  (function_call
+                    (identifier)
+                    (argument_list
+                      (expression
+                        (string)))))))))))))
 
 =======
 While statement
@@ -90,4 +131,61 @@ func prettyprint(a) {
 
 ---
 
-
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)))
+    (logic_block
+      (control_flow_statement
+        (while_statement
+          (expression
+            (identifier)
+            (operator)
+            (expression
+              (number)))
+          (logic_block
+            (expression_statement
+              (expression
+                (function_call
+                  (identifier)
+                  (argument_list
+                    (expression
+                      (string))))))
+            (expression_statement
+              (expression
+                (identifier)
+                (operator)
+                (expression
+                  (number)))))))
+      (control_flow_statement
+        (while_statement
+          (expression
+            (identifier)
+            (operator)
+            (expression
+              (number)))
+          (logic_block
+            (expression_statement
+              (expression
+                (function_call
+                  (identifier)
+                  (argument_list
+                    (expression
+                      (string))))))
+            (expression_statement
+              (expression
+                (identifier)
+                (operator)
+                (expression
+                  (number)))))
+          (else_clause
+            (logic_block
+              (expression_statement
+                (expression
+                  (function_call
+                    (identifier)
+                    (argument_list
+                      (expression
+                        (string)))))))))))))

@@ -159,20 +159,36 @@ module.exports = grammar({
     assert_statement: ($) => seq("assert", $.expression, ";"),
 
     control_flow_statement: ($) =>
-      choice($.if_statement, $.while_statement, $.for_statement),
-
-    if_statement: ($) =>
-      seq(
-        "if",
-        $.expression,
-        $.logic_block,
-        optional(seq("else", $.logic_block)),
+      choice(
+        $.if_statement,
+        $.while_statement,
+        $.for_statement,
+        $.match_statement,
       ),
 
-    while_statement: ($) => seq("while", $.expression, $.logic_block),
+    if_statement: ($) =>
+      seq("if", $.expression, $.logic_block, optional($.else_clause)),
+
+    while_statement: ($) =>
+      seq("while", $.expression, $.logic_block, optional($.else_clause)),
 
     for_statement: ($) =>
-      seq("for", $.identifier, "in", $.expression, $.logic_block),
+      seq(
+        "for",
+        $.identifier,
+        "in",
+        $.expression,
+        $.logic_block,
+        optional($.else_clause),
+      ),
+
+    match_statement: ($) => seq("match", $.identifier, $.match_block),
+
+    match_block: ($) => seq("{", list_of(",", $.match_arm), "}"),
+
+    match_arm: ($) => seq("case", $.pattern, "=>", $.logic_block),
+
+    else_clause: ($) => seq("else", $.logic_block),
 
     expression: ($) =>
       seq(
@@ -215,6 +231,8 @@ module.exports = grammar({
     function_call: ($) => seq($.identifier, $.argument_list),
 
     argument_list: ($) => seq("(", optional(list_of(",", $.expression)), ")"),
+
+    pattern: ($) => seq($.identifier, "(", $.identifier, ")"),
 
     comment: ($) => /#[^\n]*\n/,
   },
