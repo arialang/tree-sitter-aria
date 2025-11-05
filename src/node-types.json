@@ -83,6 +83,11 @@
     }
   },
   {
+    "type": "assignment_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "assignment_statement",
     "named": true,
     "fields": {},
@@ -90,6 +95,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "assignment_operator",
+          "named": true
+        },
         {
           "type": "expression",
           "named": true
@@ -144,6 +153,25 @@
     }
   },
   {
+    "type": "elsif_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "logic_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "expression",
     "named": true,
     "fields": {},
@@ -172,15 +200,7 @@
           "named": true
         },
         {
-          "type": "method_call",
-          "named": true
-        },
-        {
           "type": "number",
-          "named": true
-        },
-        {
-          "type": "object_field",
           "named": true
         },
         {
@@ -321,6 +341,10 @@
           "named": true
         },
         {
+          "type": "elsif_clause",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         },
@@ -429,40 +453,6 @@
         },
         {
           "type": "match_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "method_call",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "object_field",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
           "named": true
         }
       ]
@@ -696,6 +686,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_operator",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         },
@@ -896,6 +890,10 @@
   },
   {
     "type": "else",
+    "named": false
+  },
+  {
+    "type": "elsif",
     "named": false
   },
   {

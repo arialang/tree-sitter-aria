@@ -46,8 +46,9 @@ struct Foo {
         (logic_block
           (return_statement
             (expression
-              (method_call
                 (identifier)
+                (operator)
+                (expression
                 (function_call
                   (identifier)
                   (argument_list

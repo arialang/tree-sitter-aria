@@ -15,6 +15,45 @@ func prettyprint() {
 
 ---
 
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (logic_block
+      (control_flow_statement
+        (match_statement
+          (identifier)
+          (match_block
+            (match_arm
+              (pattern
+                (identifier)
+                (identifier))
+              (logic_block
+                (return_statement
+                  (expression
+                    (string)
+                    (operator)
+                    (expression
+                      (function_call
+                        (identifier)
+                        (argument_list
+                          (expression
+                            (identifier)))))))))
+            (match_arm
+              (pattern
+                (identifier)
+                (identifier))
+              (logic_block
+                (return_statement
+                  (expression
+                    (string)
+                    (operator)
+                    (expression
+                      (function_call
+                        (identifier)
+                        (argument_list
+                          (expression
+                            (identifier)))))))))))))))
 
 ========
 If statement
@@ -48,7 +87,119 @@ func prettyprint(a) {
 
 ---
 
-
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)))
+    (logic_block
+      (control_flow_statement
+        (if_statement
+          (expression
+            (identifier)
+            (operator)
+            (expression
+              (number)))
+          (logic_block
+            (expression_statement
+              (expression
+                (function_call
+                  (identifier)
+                  (argument_list
+                    (expression
+                      (string)))))))))
+      (control_flow_statement
+        (if_statement
+          (expression
+            (identifier)
+            (operator)
+            (expression
+              (number)))
+          (logic_block
+            (expression_statement
+              (expression
+                (function_call
+                  (identifier)
+                  (argument_list
+                    (expression
+                      (string)))))))
+          (else_clause
+            (logic_block
+              (expression_statement
+                (expression
+                  (function_call
+                    (identifier)
+                    (argument_list
+                      (expression
+                        (string))))))))))
+      (control_flow_statement
+        (if_statement
+          (expression
+            (identifier)
+            (operator)
+            (expression
+              (number)))
+          (logic_block
+            (expression_statement
+              (expression
+                (function_call
+                  (identifier)
+                  (argument_list
+                    (expression
+                      (string)))))))
+          (elsif_clause
+            (expression
+              (identifier)
+              (operator)
+              (expression
+                (number)))
+            (logic_block
+              (expression_statement
+                (expression
+                  (function_call
+                    (identifier)
+                    (argument_list
+                      (expression
+                        (string))))))))))
+      (control_flow_statement
+        (if_statement
+          (expression
+            (identifier)
+            (operator)
+            (expression
+              (number)))
+          (logic_block
+            (expression_statement
+              (expression
+                (function_call
+                  (identifier)
+                  (argument_list
+                    (expression
+                      (string)))))))
+          (elsif_clause
+            (expression
+              (identifier)
+              (operator)
+              (expression
+                (number)))
+            (logic_block
+              (expression_statement
+                (expression
+                  (function_call
+                    (identifier)
+                    (argument_list
+                      (expression
+                        (string))))))))
+          (else_clause
+            (logic_block
+              (expression_statement
+                (expression
+                  (function_call
+                    (identifier)
+                    (argument_list
+                      (expression
+                        (string)))))))))))))
 
 =======
 For statement
@@ -118,12 +269,10 @@ While statement
 func prettyprint(a) {
     while x > 0 {
         println("x is positive");
-        x -= 1;
     }
     
     while x > 0 {
         println("x is positive");
-        x -= 1;
     } else {
         println("x is <= 0");
     }
@@ -152,13 +301,7 @@ func prettyprint(a) {
                   (identifier)
                   (argument_list
                     (expression
-                      (string))))))
-            (expression_statement
-              (expression
-                (identifier)
-                (operator)
-                (expression
-                  (number)))))))
+                      (string)))))))))
       (control_flow_statement
         (while_statement
           (expression
@@ -173,13 +316,7 @@ func prettyprint(a) {
                   (identifier)
                   (argument_list
                     (expression
-                      (string))))))
-            (expression_statement
-              (expression
-                (identifier)
-                (operator)
-                (expression
-                  (number)))))
+                      (string)))))))
           (else_clause
             (logic_block
               (expression_statement

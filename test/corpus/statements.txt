@@ -32,6 +32,7 @@ val counter = 0;
     (identifier))
   (variable_declaration
     (identifier)
+    (assignment_operator)
     (expression
       (number))))
 

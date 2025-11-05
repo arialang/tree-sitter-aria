@@ -4,8 +4,7 @@ Extension definition
 
 extension Foo {
     func add(x) {
-        this.x += x;
-        return this.x;
+        return 3;
     }
 }
 
@@ -20,16 +19,6 @@ extension Foo {
           (parameter
             (identifier)))
         (logic_block
-          (expression_statement
-            (expression
-              (object_field
-                (identifier)
-                (identifier))
-              (operator)
-              (expression
-                (identifier))))
           (return_statement
             (expression
-              (object_field
-                (identifier)
-                (identifier)))))))))
+              (number))))))))

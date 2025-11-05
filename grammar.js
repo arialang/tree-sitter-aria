@@ -102,16 +102,6 @@ module.exports = grammar({
 
     operator: ($) =>
       choice(
-        "+=",
-        "-=",
-        "*=",
-        "/=",
-        "%=",
-        "<<=",
-        ">>=",
-        "&=",
-        "|=",
-        "^=",
         "+",
         "-",
         "*",
@@ -128,7 +118,11 @@ module.exports = grammar({
         "&",
         "|",
         "^",
+        ".",
       ),
+
+    assignment_operator: ($) =>
+      choice("+=", "-=", "*=", "/=", "%=", "<<=", ">>=", "&=", "|=", "^=", "="),
 
     parameter_list: ($) => seq("(", optional($.parameter), ")"),
 
@@ -152,9 +146,15 @@ module.exports = grammar({
     expression_statement: ($) => seq($.expression, ";"),
 
     variable_declaration: ($) =>
-      seq("val", $.identifier, optional(seq("=", $.expression)), ";"),
+      seq(
+        "val",
+        $.identifier,
+        optional(seq($.assignment_operator, $.expression)),
+        ";",
+      ),
 
-    assignment_statement: ($) => seq($.identifier, "=", $.expression, ";"),
+    assignment_statement: ($) =>
+      seq($.identifier, $.assignment_operator, $.expression, ";"),
 
     assert_statement: ($) => seq("assert", $.expression, ";"),
 
@@ -167,7 +167,13 @@ module.exports = grammar({
       ),
 
     if_statement: ($) =>
-      seq("if", $.expression, $.logic_block, optional($.else_clause)),
+      seq(
+        "if",
+        $.expression,
+        $.logic_block,
+        repeat($.elsif_clause),
+        optional($.else_clause),
+      ),
 
     while_statement: ($) =>
       seq("while", $.expression, $.logic_block, optional($.else_clause)),
@@ -188,14 +194,14 @@ module.exports = grammar({
 
     match_arm: ($) => seq("case", $.pattern, "=>", $.logic_block),
 
+    elsif_clause: ($) => seq("elsif", $.expression, $.logic_block),
+
     else_clause: ($) => seq("else", $.logic_block),
 
     expression: ($) =>
       seq(
         choice(
           $.alloc_call,
-          $.method_call,
-          $.object_field,
           $.function_call,
           $.number,
           $.string,
@@ -213,8 +219,6 @@ module.exports = grammar({
 
     array: ($) => seq("[", optional(list_of(",", $.expression)), "]"),
 
-    object_field: ($) => seq($.identifier, ".", $.identifier),
-
     alloc_call: ($) =>
       prec.right(99, seq("alloc(", $.identifier, ")", optional($.alloc_block))),
 
@@ -225,8 +229,6 @@ module.exports = grammar({
         optional(","),
         "}",
       ),
-
-    method_call: ($) => seq($.identifier, ".", $.function_call),
 
     function_call: ($) => seq($.identifier, $.argument_list),
 
